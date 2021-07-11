@@ -1,1 +1,1 @@
-echo .DS_Store >> .gitignore
+git rm --cached .DS_Store
