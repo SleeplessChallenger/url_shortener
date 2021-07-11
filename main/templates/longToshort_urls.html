@@ -1,0 +1,11 @@
+{% extends 'home_page.html'%}
+{% block content %}
+
+<body>
+	<div>
+		<h3>Old Long url: {{ old_long }}</h3>
+		<h3>New short url: {{ url_for('url.get_short_ver', link=new_short, _external=True)}}</h3>
+	</div>
+</body>
+
+{% endblock%}

@@ -1,0 +1,11 @@
+{% extends 'home_page.html'%}
+{% block content %}
+
+<body>
+	<div>
+		<h3>Long url: {{ long }}</h3>
+		<h3>short url from Input: {{ url_for('url.get_short_ver', link=short, _external=True)}}</h3>
+	</div>
+</body>
+
+{% endblock%}

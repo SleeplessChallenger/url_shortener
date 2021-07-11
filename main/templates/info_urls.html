@@ -1,0 +1,26 @@
+{% extends 'home_page.html'%}
+{% block content %}
+
+ <body>
+      {% for mesg in get_flashed_messages() %}
+      <h1>{{ mesg }}</h1>
+      {% endfor %}
+</body>
+
+{% for d in data %}
+	<article class="media content-section">
+		<div class="media-body">
+			<div class="article-metadata">
+				<div class='brd'>
+					<a class="mr-2"> Long Url: {{ d.long_url }} </a>  <br>
+					<a class="mr-2"> Short Url: {{ d.short_url }} </a> <br>
+					<a class="mr-2"> Times visited: {{ d.times_visited }} </a> <br>
+					<a class="mr-2"> Time created: {{ d.link_created }} </a>
+				</div>
+			</div>
+		</div>
+	</article>
+
+{% endfor %}
+
+{% endblock%}

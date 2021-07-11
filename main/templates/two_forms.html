@@ -1,0 +1,59 @@
+{% extends 'home_page.html'%}
+{% block content %}
+
+<div class="container">
+	<form role="form" method='POST' action=''>
+		{{ formOne.hidden_tag() }}
+		<div class='row' id='first'>
+			<div class='col-xs-6 col-sm-6 col-md-6' id='first_form'>
+				<div class="form-group text-light bg-dark">
+					{{ formOne.long_url.label(class='form-control-label')}}
+					{% if formOne.long_url.errors %}
+						{{ formOne.long_url(class="form-control form-control-lg is-invalid")}}
+				<div class='invalid-feedback'>
+				{% for error in formOne.long_url.errors %}
+					<span>{{ error }}</span>
+				{% endfor %}
+				</div>
+				{% else %}
+					{{ formOne.long_url(class='form-control', placeholder='put your long url')}}
+				{% endif %}
+				</div>
+			</div>
+
+			<div class='form-group'>
+				{{ formOne.submit(class='btn btn-outline-info')}}
+			</div>
+
+		</div>
+	</form>
+</div>
+
+
+<div class="container">
+	<form role="form" method='POST' action=''>
+		{{ formTwo.hidden_tag() }}
+		<div class='row' id='second'>
+			<div class='col-xs-6 col-sm-6 col-md-6' id='second_form'>
+				<div class="form-group text-light bg-dark">
+					{{ formTwo.short_url.label(class='form-control-label')}}
+					{% if formTwo.short_url.errors %}
+						{{ formTwo.short_url(class="form-control form-control-lg is-invalid")}}
+				<div class='invalid-feedback'>
+				{% for error in formTwo.short_url.errors %}
+					<span>{{ error }}</span>
+				{% endfor %}
+				</div>
+				{% else %}
+					{{ formTwo.short_url(class='form-control', placeholder="put short url to get long URL from database. If such isn't in db, error will be displayed")}}
+				{% endif %}
+				</div>
+			</div>
+			<div class='form-group'>
+				{{ formTwo.submit(class='btn btn-outline-info')}}
+			</div>
+		</div>
+	</form>	    	
+</div>
+
+{% endblock%}

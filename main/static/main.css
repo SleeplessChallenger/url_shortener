@@ -1,0 +1,43 @@
+body {
+	background-color: #533B4D;
+}
+
+#first, #second	{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #dbcdf0;
+	margin: 20%;
+	height: 4rem;
+}
+
+#first:hover, #second:hover {
+	background-color: #DECBB7;
+}
+
+#first_form, #second_form {
+	background-color: #92AC86;
+	height: 3rem;
+	width: 80%;
+}
+
+.form-control {
+	width: 80%;
+	cursor: pointer;
+}
+
+::placeholder {
+	color: red;
+}
+
+.btn {
+	background-color: #E3655B;
+	cursor: pointer;
+}
+
+.brd {
+	border: 2px solid black;
+	margin: 2rem;
+	width: 100%;
+}
