@@ -60,7 +60,7 @@
 
 4. БД и краткое описание Flask Migrate
  
-SQLite использована как основная бд в моем приложении. Однако, я сделла одну бд для "porduction" и отдельную для "testing". Пример структуры БД привел ниже:
+SQLite использована как основная бд в моем приложении. Однако, я сделал одну бд для "production" и отдельную для "testing". Пример структуры БД привел ниже:
 
 
 ```bash
@@ -100,18 +100,21 @@ id | long_url    | short_url | times_visited | link_created
 	- удалеяем файл migration вместе с бд
 	- проделываем все из пункта А
 
+
 5. Использование CURL для отправки запросов + о API (browser & CURL)
 
 - в browser по своей сути мы можем делать только GET запросы (в моем случае только использовать `/info` route). Все остальные методы - POST
 методы. Про разницу между http body и query string писал выше. Здесь хотел бы показать CURL команды, которые можно использовать для работы с проектом:
 
-Данный long url уже существует и при `api/long` выдаст json() response о том, что такой url уже есть и парой других комментариев.
+Данный long url уже существует и при `api/long` выдаст json() response о том, что такой url уже есть и парой других комментариев. <br>
+
 `curl -X POST -H "Content-Type: application/json" -d '{"url": "https://www.joneslanglasalle.co.jp/en"}' http://0.0.0.0:7000/api/long`
 
-Команда ниже вернет длинный URL, так как короткий URL ниже уже есть в БД
+Команда ниже вернет длинный URL, так как короткий URL ниже уже есть в БД: <br>
 `curl -X POST -H "Content-Type: application/json" -d '{"url": "https://KUb39"}' http://0.0.0.0:7000/api/short`
 
-Пример, когда URL идут в качестве query string: `curl -X POST http://0.0.0.0:7000/api/shortQuery?url=LVp5r`, `curl -X POST http://0.0.0.0:7000/api/longQuery?url=https://gist.github.com/subfuzion`
+Пример, когда URL идут в качестве query string: <br>
+`curl -X POST http://0.0.0.0:7000/api/shortQuery?url=LVp5r`, `curl -X POST http://0.0.0.0:7000/api/longQuery?url=https://gist.github.com/subfuzion`
 
 6. Unit Testing
 
