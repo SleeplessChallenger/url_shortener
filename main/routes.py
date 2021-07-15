@@ -80,7 +80,7 @@ def home():
 
 	# GET method
 	return render_template('two_forms.html', formOne=formLongShort,
-											 formTwo=formShortLong)
+						 formTwo=formShortLong)
 
 @url.route('/resultShort')
 def get_short_result():
@@ -92,8 +92,8 @@ def get_short_result():
 		return redirect(url_for('url.home'))
 
 	return render_template('longToshort_urls.html',
-							new_short=short_url,
-							old_long=long_url)
+				new_short=short_url,
+				old_long=long_url)
 
 @url.route('/resultLong')
 def get_long_result():
@@ -105,8 +105,8 @@ def get_long_result():
 		return redirect(url_for('url.home'))
 
 	return render_template('shortTolong_urls.html',
-							long=long_url,
-							short=short_url)
+				long=long_url,
+				short=short_url)
 
 @url.route('/info', methods=['GET'])
 def info():
