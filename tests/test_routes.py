@@ -33,30 +33,30 @@ class routes_Test(unittest.TestCase):
 		# POST request
 		# create new url
 		response = self.client.post('/',
-									data={
-										'long_url': 'https://random_url'
-									})
+					    data={
+						  'long_url': 'https://random_url'
+		})
 		self.assertEqual(response.status_code, 302)	
 
 		# check of existing url gives long in response
 		url = URL_Class.query.filter_by(long_url='https://random_url').first()
 		response = self.client.post('/',
-									data={
-										'short_url': url.short_url
-									})
+					    data={
+						  'short_url': url.short_url
+		})
 
 		# if long_url already in db
 		response = self.client.post('/',
-									data={
-										'long_url': 'https://random_url'
-									})
+					    data={
+						  'long_url': 'https://random_url'
+		})
 		self.assertEqual(response.status_code, 302)
 
 		# if put non-exisiting url
 		response = self.client.post('/',
-							data={
-								'short_url': 'randomQ56'
-							})
+					    data={
+						  'short_url': 'randomQ56'
+		})
 		self.assertNotEqual(response.status_code, 404)
 
 	def test_sessions(self):
