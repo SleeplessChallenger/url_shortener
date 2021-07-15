@@ -31,21 +31,21 @@ class api_Test(unittest.TestCase):
 
 	def put_temp_url(self):
 		response = self.client.post('/api/long',
-									headers=self.get_api_headers(),
-									data=json.dumps({"url": "https://rasdsndom_url"}))
+					     headers=self.get_api_headers(),
+					     data=json.dumps({"url": "https://rasdsndom_url"}))
 		return response
 
 	def test_long(self):
 		get_headers = self.get_api_headers()
 		# test wrong one
 		response = self.client.get('/api/random',
-									headers=get_headers)
+					    headers=get_headers)
 		self.assertEqual(response.status_code, 404)
 
 		# test correct one
 		response = self.client.post('/api/long',
-									headers=get_headers,
-									data=json.dumps({"url": "https://rasdsndom_url"}))
+					    headers=get_headers,
+					    data=json.dumps({"url": "https://rasdsndom_url"}))
 		self.assertEqual(response.status_code, 200)
 
 		json_return = json.loads(response.get_data(as_text=True))
@@ -53,8 +53,8 @@ class api_Test(unittest.TestCase):
 
 		# already existing one
 		response = self.client.post('/api/long',
-									headers=get_headers,
-									data=json.dumps({"url": "https://rasdsndom_url"}))
+					     headers=get_headers,
+					     data=json.dumps({"url": "https://rasdsndom_url"}))
 		
 		r = json.loads(response.get_data().decode('utf-8'))
 		self.assertEqual(len(r), 3)
@@ -63,14 +63,14 @@ class api_Test(unittest.TestCase):
 		get_headers = self.get_api_headers()
 		# wrong one
 		response = self.client.get('/api/notShort',
-									headers=get_headers)
+					    headers=get_headers)
 		self.assertEqual(response.status_code, 404)
 
 		# correct one
 		res = json.loads(self.put_temp_url().get_data().decode('utf-8'))
 		response = self.client.post('/api/short',
-									headers=get_headers,
-									data=json.dumps({"url": res['url-short']}))
+					    headers=get_headers,
+					    data=json.dumps({"url": res['url-short']}))
 		self.assertEqual(response.status_code, 200)
 
 		json_return = json.loads(response.get_data(as_text=True))
@@ -78,8 +78,8 @@ class api_Test(unittest.TestCase):
 
 		# non-exisitng short
 		response = self.client.post('/api/short',
-									headers=get_headers,
-									data=json.dumps({'url': 'https://notExist'}))
+					     headers=get_headers,
+					     data=json.dumps({'url': 'https://notExist'}))
 		r = json.loads(response.get_data().decode('utf-8'))
 		self.assertEqual(len(r), 1)
 		self.assertEqual(r, {'message': 'No such short link in db'})
