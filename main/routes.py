@@ -5,7 +5,6 @@ from main import db
 from main.models import URL_Class
 from sqlalchemy import desc
 
-# check validate_on_sumbit() 
 url = Blueprint('url', __name__)
 
 @url.before_app_first_request
